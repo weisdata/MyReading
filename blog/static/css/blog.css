@@ -1,0 +1,43 @@
+.body {
+  padding-top: 50px;
+}
+
+.main-container {
+  padding: 40px 15px;
+}
+
+.p {
+  text-align: center;
+}
+
+.slogan {
+        padding-bottom: 10px;
+        padding-left: 10px;
+      }
+
+.save {
+  float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.post h1, .post h1 a, .post h1 a:visited {
+    font-size: 15pt;
+    color: black;
+}
+
+.main-container h1 {
+  font-size: 15pt;
+}
+
+.edit-post {
+  width: 90%;
+}
+
+.post img {
+  width: 100%;
+}
+
+
