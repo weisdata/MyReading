@@ -40,7 +40,7 @@ def post_new(request):
             r = requests.get(url)
             htmlSource = r.text
             soup = BeautifulSoup(htmlSource)
-            title = soup.title.contents[0]
+            title = soup.title.contents[0].replace(u'\u2019',"\'") # to consider more cases
 
             all_meta = soup.find_all('meta')
             image = ''
@@ -60,8 +60,10 @@ def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
+        print form
         if form.is_valid():
             post = form.save(commit=False)
+            print post.title
             post.author = request.user
             post.published_date = timezone.now()
             post.save()

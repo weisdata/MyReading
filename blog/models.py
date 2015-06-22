@@ -7,7 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
     link = models.CharField(max_length=2000)
-    image = models.CharField(max_length=2000)
+    image = models.CharField(max_length=2000, blank=True)
     published_date = models.DateTimeField(
             default=timezone.now)
 
