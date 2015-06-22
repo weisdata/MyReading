@@ -50,7 +50,7 @@ def post_new(request):
                         image = img_li
                         break
             text = ''
-            form = PostForm({'title': title, 'text': text, 'image': image}) 
+            form = PostForm({'title': title, 'text': text, 'image': image, 'link':url}) 
         else:
             form = PostForm() 
 

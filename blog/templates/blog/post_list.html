@@ -25,13 +25,11 @@
 	         <div class="caption">
 	            <h1><a href="{% url "blog.views.post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
 	            <p>{{ post.text|linebreaks }}</p>
-	            <a href=''>{{ post.link|linebreaks }}</a>
+	            <a href="{{post.link}}">Original Link</a>
 	         </div>
 	        </div>
 	        </div>
         </div>
-               
-        
     {% endfor %}
 {% endblock content %}
 
