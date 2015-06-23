@@ -24,7 +24,7 @@
 }
 
 .post h1, .post h1 a, .post h1 a:visited {
-    font-size: 15pt;
+    font-size: 13pt;
     color: black;
 }
 
@@ -38,6 +38,10 @@
 
 .post img {
   width: 100%;
+}
+
+.originallink {
+  float:right;
 }
 
 

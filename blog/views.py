@@ -1,6 +1,5 @@
-from bs4 import BeautifulSoup
+from newspaper import Article
 import re
-import requests
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -33,24 +32,17 @@ def post_new(request):
         url = request.GET.get('url', '')
                
         if len(url) > 5:
-#            from newspaper import Article
-#            article = Article(url)
-#            article.download()
-#            print article.html
-            r = requests.get(url)
-            htmlSource = r.text
-            soup = BeautifulSoup(htmlSource)
-            title = soup.title.contents[0].replace(u'\u2019',"\'") # to consider more cases
+            article = Article(url, language='en')
+            article.download()
+            article.parse()
+            article.nlp()
 
-            all_meta = soup.find_all('meta')
-            image = ''
-            for element in str(all_meta).split('<'):
-                if 'property="og:image' in element:
-                    for img_li in re.findall('"([^"]*)"', element.split()[1]):
-                        image = img_li
-                        break
-            text = ''
-            form = PostForm({'title': title, 'text': text, 'image': image, 'link':url}) 
+            image = article.top_image
+            summary = article.summary.replace('\n', ' ')
+            title = article.title
+            source = url.split('//')[1].split('/')[0].replace('www.','')
+
+            form = PostForm({'title': title, 'summary': summary, 'image': image, 'link':url, 'source':source, }) 
         else:
             form = PostForm() 
 

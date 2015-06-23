@@ -24,8 +24,9 @@
 	       		 {% endif %}
 	         <div class="caption">
 	            <h1><a href="{% url "blog.views.post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
-	            <p>{{ post.text|linebreaks }}</p>
-	            <a href="{{post.link}}">Original Link</a>
+	            <p>{{ post.summary|linebreaks }}</p>
+                <a href="{{post.link}}" class="originallink">{{ post.source }}</a>
+                <br>
 	         </div>
 	        </div>
 	        </div>
