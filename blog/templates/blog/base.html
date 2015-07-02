@@ -4,7 +4,7 @@
         <title>My reading</title>
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
-        <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static "css/blog.css" %}">
     </head>
 
@@ -22,8 +22,14 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#contact">Login </a></li>
-                    <li><a href="#contact">About </a></li>
+                    {% if user.is_authenticated %}
+                    <li><a>Hi, {{ user.username }}!</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'register' %}">Register </a></li>
+                    <li><a href="{% url 'login' %}">Login </a></li>
+                    {% endif %}
+                    <li><a href="#about">About </a></li>
                 </ul>
             </div>
         </div>
@@ -35,10 +41,16 @@
 
             <div class="tab-content">
                 <br>
+                {% if user.is_authenticated %}
                 <div class="row masonry-container">
                     {% block content %}
                     {% endblock %}
                 </div>
+                {% else %}
+                    {% block usercontent %}
+                    {% endblock %}
+                {% endif %}
+                
             </div>
         </div>
         
@@ -51,7 +63,8 @@
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript" src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.2.2/masonry.pkgd.min.js"></script>
-
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.0.0/js/bootstrap-toggle.min.js"></script>
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
     <script type="text/javascript">
 
     /* Demo Scripts for Making Twitter Bootstrap 3 Tab Play Nicely With The Masonry Library

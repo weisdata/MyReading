@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from os.path import join
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,6 +52,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
+PASSWORD_HASHERS = (
+'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
@@ -69,7 +75,13 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_DIRS = (
+    join(BASE_DIR,  '../templates'),
+)
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
+
+
 
 
 # Database
@@ -82,7 +94,7 @@ DATABASES = {
     }
 }
 
-
+LOGIN_URL = '/blog/login/'
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 

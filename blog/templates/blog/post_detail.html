@@ -1,14 +1,20 @@
 {% extends "blog/base.html" %}
 
-{% block content %}
+{% block usercontent %}
+	<div class="main-container">
+		<h1>Please <a href="/login/">Login</a> to edit your own post.</h1>
+	</div>
+{% endblock %}
 
+{% block content %}
     <div class="main-container">
         <div class="post">
-            <a class="btn btn-default" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
             <br>
             <h1>{{ post.title }}</h1>
             <p>{{ post.summary|linebreaks }}</p>
-        </div>  
+            <a class="btn btn-default" href="/"><span class="glyphicon glyphicon-home"> Home</span></a>
+        </div> 
     </div>
 {% endblock %}
 
