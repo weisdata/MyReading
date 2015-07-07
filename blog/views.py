@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.template import RequestContext
 
 def post_list(request):
     if request.method == 'GET':
@@ -128,6 +129,9 @@ def restricted(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+
 
 
 
