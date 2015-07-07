@@ -7,14 +7,23 @@
 {% endblock %}
 
 {% block content %}
-    <div class="main-container">
-        <div class="post">
-            <a class="btn btn-default" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-            <br>
-            <h1>{{ post.title }}</h1>
-            <p>{{ post.summary|linebreaks }}</p>
-            <a class="btn btn-default" href="/"><span class="glyphicon glyphicon-home"> Home</span></a>
-        </div> 
+    <div class="col-md-4 col-sm-6 item">
+        <div class="thumbnail">
+            <div class="post"> 
+                {% if post.image %}
+                    <img src="{{ post.image }}" alt="">
+                {% endif %}
+                <div class="caption">
+                    <h1>{{ post.title }}</h1>
+                    <input type="checkbox" checked data-toggle="toggle" data-on="Unread" data-off="Read" data-onstyle="danger" data-size="mini">
+                    <p>{{ post.summary|linebreaks }}</p>  
+                    <a href="{{post.link}}" class="originallink">{{ post.source }}</a>
+                    <br>
+                </div>  
+            </div> 
+        </div>
+        <a class="btn btn-default" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
+        <a class="btn btn-default" href="/"><span class="glyphicon glyphicon-home"> Home</span></a>
     </div>
 {% endblock %}
 
