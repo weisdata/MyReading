@@ -13,6 +13,7 @@ from django.contrib.auth import logout
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
+from django.http import Http404
 
 def post_list(request):
     if request.method == 'GET':
@@ -31,7 +32,7 @@ def post_detail(request, pk):
     if post.author_id == request.user.id:
         return render(request, 'blog/post_detail.html', {'post': post})
     else:
-        return HttpResponse("You cannot access to others posts!")
+        raise Http404()
 
 
 def post_new(request):
@@ -79,7 +80,7 @@ def post_edit(request, pk):
             form = PostForm(instance=post)
         return render(request, 'blog/post_edit.html', {'form': form})
     else:
-        return HttpResponse("You cannot access to others posts!")
+        raise Http404
     
 
 def register(request):
@@ -129,6 +130,10 @@ def restricted(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+def custom_404(request):
+    return render_to_response('404.html')
 
 
 

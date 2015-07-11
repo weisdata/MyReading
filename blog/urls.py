@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from . import views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -11,6 +12,9 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name='login'),
     url(r'^restricted/', views.restricted, name='restricted'),
     url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ]
 
+handler404 = 'app.views.custom_404'
+handler500 = 'app.views.custom_500'
 

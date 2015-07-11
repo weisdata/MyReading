@@ -2,10 +2,10 @@
 
 {% block headcontent %}
             <div class="slogan">
-                <p>Collect the to-read list.</p>
+                <p>Create your reading list and take some notes.</p>
                 <form method="POST" class="post-form">{% csrf_token %}
                 <div class="input-group">
-                  <input type="text" name="url-input" class="form-control" placeholder="Input the article URL">
+                  <input type="text" name="url-input" class="form-control" placeholder="Input the article/book URL">
                   <span class="input-group-btn">
                     <input type="submit" class="top-menu btn btn-default" value="Create">
                   </span>

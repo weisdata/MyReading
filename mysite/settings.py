@@ -26,8 +26,7 @@ SECRET_KEY = '#ohj97)=ose--z8&6lztc3pqbd6bm7ap%vl#5h)l)(&la-p%6u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -100,6 +99,8 @@ LOGIN_URL = '/blog/login/'
 
 LANGUAGE_CODE = 'en-us'
 
+
+
 TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
@@ -114,3 +115,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+
