@@ -6,6 +6,7 @@
         <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static "css/blog.css" %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
     <body>
@@ -36,8 +37,10 @@
         </nav>
 
         <div class="container main-container">
-            {% block headcontent %}
-            {% endblock %}
+            <div class="container">
+                {% block headcontent %}
+                {% endblock %}
+            </div>
 
             <div class="tab-content">
                 <br>

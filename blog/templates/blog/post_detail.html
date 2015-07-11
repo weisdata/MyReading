@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <div class="col-md-4 col-sm-6 item">
+    <div class="col-lg-4 col-md-6 col-sm-12 item">
         <div class="thumbnail">
             <div class="post"> 
                 {% if post.image %}
@@ -9,7 +9,6 @@
                 {% endif %}
                 <div class="caption">
                     <h1>{{ post.title }}</h1>
-                    <input type="checkbox" checked data-toggle="toggle" data-on="Unread" data-off="Read" data-onstyle="danger" data-size="mini">
                     <p>{{ post.summary|linebreaks }}</p>  
                     <a href="{{post.link}}" class="originallink">{{ post.source }}</a>
                     <br>
