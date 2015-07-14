@@ -60,6 +60,7 @@ def post_new(request):
             summary = article.summary.replace('\n', ' ').replace(u'\u2019',"\'")
             title = article.title.replace(u'\u2019',"\'")
             source = url.split('//')[1].split('/')[0].replace('www.','')
+            print source
             status = 'UD'
             form = PostForm({'title': title, 'summary': summary, 'image': image, 'link':url, 'source':source, 'status':status,}) 
         else:
