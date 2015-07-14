@@ -14,11 +14,14 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
 from django.http import Http404
+from django.contrib.auth.models import User
 
 def post_list(request):
     if request.method == 'GET':
     	posts = Post.objects.filter(author_id=request.user.id).order_by('-published_date')
-    	return render(request, 'blog/post_list.html', {'posts': posts})
+        me = User.objects.get(username='weisdata')
+        public_posts = Post.objects.filter(author=me).order_by('-published_date')
+    	return render(request, 'blog/post_list.html',  {'posts': posts, 'public_posts': public_posts})
     elif request.method == 'POST':
         url = request.POST.get('url-input', '')
         if request.user.is_active:
@@ -26,6 +29,7 @@ def post_list(request):
             return redirect('/post/new/?url=%s' % url)
         else:
             return redirect('blog.views.register')
+
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
