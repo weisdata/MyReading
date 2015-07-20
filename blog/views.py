@@ -15,6 +15,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.models import User
+from django.shortcuts import render_to_response
+
 
 def post_list(request):
     if request.method == 'GET':
@@ -33,7 +35,9 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    if post.author_id == request.user.id:
+    print User.objects.all()
+    print post.author
+    if post.author == request.user:
         return render(request, 'blog/post_detail.html', {'post': post})
     else:
         raise Http404()
@@ -60,7 +64,6 @@ def post_new(request):
             summary = article.summary.replace('\n', ' ').replace(u'\u2019',"\'")
             title = article.title.replace(u'\u2019',"\'")
             source = url.split('//')[1].split('/')[0].replace('www.','')
-            print source
             status = 'UD'
             form = PostForm({'title': title, 'summary': summary, 'image': image, 'link':url, 'source':source, 'status':status,}) 
         else:
@@ -73,10 +76,8 @@ def post_edit(request, pk):
     if post.author_id == request.user.id:
         if request.method == "POST":
             form = PostForm(request.POST, instance=post)
-            print form
             if form.is_valid():
                 post = form.save(commit=False)
-                print post.title
                 post.author = request.user
                 post.published_date = timezone.now()
                 post.save()
@@ -137,8 +138,22 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 
-def custom_404(request):
-    return render_to_response('404.html')
+#def custom_404(request):
+#    return render_to_response('404.html')
+
+
+def handler404(request):
+    response = render_to_response('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
+def handler500(request):
+    response = render_to_response('500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
 
 
 
