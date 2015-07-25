@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="main-container text-center">
+    <h3>Are you sure, {{ user.username }}?</h3>
+    <p>You want to delete the following post: </p>
+    <p><strong>"{{ post.title }}"?</strong></p>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yeap, I'm sure.</button>
+        <a href="{% url "blog.views.post_edit" pk=post.pk %}" class="btn btn-primary" role="button">No, take me back.</a>
+    </form>
+</div>
+{% endblock %}
+
+
+

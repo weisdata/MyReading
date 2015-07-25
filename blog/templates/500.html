@@ -4,7 +4,9 @@
 {% block content %}
 	<div class="main-container text-center">
 		<br><br><br>
+		<h1>Hi, {{ user.username }}! </h1>
 		<h1>Something is technically wrong! (500)</h1>
+		<h1>Back to <a href="/"> Homepage.</a></h1>
 	</div>
 {% endblock %}
 
@@ -13,5 +15,6 @@
     <div class="main-container text-center">
 		<br><br><br>
 		<h1>Something is technically wrong! (500)</h1>
+		<h1><a href="/login/">Login to access to your own posts!</a></h1>
 	</div>
 {% endblock %}

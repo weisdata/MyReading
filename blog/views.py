@@ -16,7 +16,7 @@ from django.template import RequestContext
 from django.http import Http404
 from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
-
+from django.core.urlresolvers import reverse
 
 def post_list(request):
     if request.method == 'GET':
@@ -32,11 +32,21 @@ def post_list(request):
         else:
             return redirect('blog.views.register')
 
+def post_delete(request, pk):
+    if request.method == 'GET':
+        post = get_object_or_404(Post, pk=pk)
+        if post.author == request.user:
+            return render(request, 'blog/post_delete.html', {'post': post})
+    elif request.method == 'POST':
+        post = get_object_or_404(Post, pk=pk)
+        if post.author == request.user:
+            post.delete()
+        return redirect('/', pk=post.pk)
+    else:
+        raise Http404
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    print User.objects.all()
-    print post.author
     if post.author == request.user:
         return render(request, 'blog/post_detail.html', {'post': post})
     else:
@@ -74,6 +84,7 @@ def post_new(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if post.author_id == request.user.id:
+        post.delete_url = '/blog/post/' + str(post.pk) + '/delete' 
         if request.method == "POST":
             form = PostForm(request.POST, instance=post)
             if form.is_valid():
@@ -87,7 +98,6 @@ def post_edit(request, pk):
         return render(request, 'blog/post_edit.html', {'form': form})
     else:
         raise Http404
-    
 
 def register(request):
     registered = False

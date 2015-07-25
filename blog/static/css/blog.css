@@ -16,9 +16,35 @@
         padding-right: 10px;
       }
 
+.button {
+  padding-top: 8px;
+  word-spacing: -11px;
+}
+
+.button-left {
+  float: left;
+  word-spacing: -11px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.button-right {
+  float: right;
+  word-spacing: -11px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
 .save {
   float: right;
 }
+
 
 .post-form textarea, .post-form input {
     width: 100%;

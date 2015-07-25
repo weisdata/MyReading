@@ -7,7 +7,10 @@
 	    <div class="edit-post">
 		    <form method="POST" class="post-form">{% csrf_token %}
 		        {{ form.as_p }}
+		        <form>
 		        <button type="submit" class="save btn btn-default">Save</button>
+		        </p>
+		        </form>
 		    </form>
 	    </div>
     </div>

@@ -2,10 +2,21 @@
 
 <!-- user.is_authenticated -->
 {% block content %}
-	<div class="main-container text-center">
-		<br><br><br>
-		<h1>Sorry, that page doesn’t exist for you! (404)</h1>
-		<h1><a href="/login/">Login to access to your own posts!</a></h1>
+	<div class="main-container">
+		<br>
+		<h1 class="text-center">Sorry, {{ user.username }}! That page doesn’t exist for you! (404)</h1>
+		<br><br>
+	    <div class="slogan">
+	    	<p>Create your reading list and take some notes.</p>
+	        <form method="POST" class="post-form">{% csrf_token %}
+	        <div class="input-group">
+	            <input type="text" name="url-input" class="form-control" placeholder="Input the article/book URL">
+	            <span class="input-group-btn">
+	                <input type="submit" class="top-menu btn btn-default" value="Create">
+	            </span>
+	        </div>
+	        </form>
+	    </div
 	</div>
 {% endblock %}
 
