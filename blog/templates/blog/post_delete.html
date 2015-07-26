@@ -9,7 +9,7 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Yeap, I'm sure.</button>
-        <a href="{% url "blog.views.post_edit" pk=post.pk %}" class="btn btn-primary" role="button">No, take me back.</a>
+        <a href="{% url "blog.views.post_detail" pk=post.pk %}" class="btn btn-primary" role="button">No, take me back.</a>
     </form>
 </div>
 {% endblock %}

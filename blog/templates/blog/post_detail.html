@@ -2,9 +2,6 @@
 
 {% block content %}
     <div class="col-lg-4 col-md-6 col-sm-12 item">
-        <a class="btn btn-default button-left" href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-        <a class="btn btn-default button-right" href="/"><span class="glyphicon glyphicon-home"> Home</span></a>
-        <br><br>
         <div class="thumbnail">
             <div class="post"> 
                 {% if post.image %}
@@ -12,13 +9,23 @@
                 {% endif %}
                 <div class="caption">
                     <h1>{{ post.title }}</h1>
-                    <p>{{ post.summary|linebreaks }}</p>  
+                    <p>
+                    <div class="detail-text">{{ post.summary|linebreaks }}</div>
+                    </p>  
                     <a href="{{post.link}}" class="originallink">{{ post.source }}</a>
                     <br>
                 </div>  
             </div> 
         </div>
-        <a class="btn btn-danger button" href="{% url "blog.views.post_delete" pk=post.pk %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"> Delete</span></a>
+        <nav>
+          <ul class="pager">
+            <li><a href="{% url "post_edit" pk=post.pk %}"><span class="glyphicon glyphicon-pencil"> Edit</span></a></li>
+            <li><a href="{% url "blog.views.post_delete" pk=post.pk %}"><span class="glyphicon glyphicon-remove delete-button" aria-hidden="true"> Delete</span></a></li>
+            <li><a href="/"><span class="glyphicon glyphicon-home"> Home</span></a></li>
+          </ul>
+        </nav>
+
+        </div>
     </div>
 {% endblock %}
 
