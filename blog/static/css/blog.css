@@ -6,6 +6,12 @@
   padding: 40px 15px;
 }
 
+.edit-container {
+  padding: 40px 15px;
+  padding-top: 0px;
+}
+
+
 .p {
   text-align: center;
 }
@@ -18,40 +24,6 @@
 
 .delete-button {
   color:#900000;
-}
-
-.text-ellipse {
-  margin-top: 10px;
-  margin-bottom: 0px;
-  line-height: 1.5;
-  overflow: hidden;
-  position: relative;
-  max-height: 4.5em; /*display ellipsis after 3 lines*/
-}
-
-.text-ellipse:before  {
-  background: #fff;
-  bottom: 0;
-  position: absolute;
-  right: 0;
-  content: '\2026';
-  padding-right: 10px;
-}
-
-.text-ellipse:after{
-  content: '';
-  background: #fff;
-  position: absolute;
-  height: 50px;
-  width: 100%;
-  z-index: 1;
-}
-
-.detail-text {
-  margin-top: 10px;
-  margin-bottom: 0px;
-  line-height: 1.5;
-  position: relative;
 }
 
 .save {
@@ -78,7 +50,6 @@
 
 .post img {
   width: 100%;
-  max-height: 400px;
 }
 
 .originallink {
