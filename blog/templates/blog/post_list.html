@@ -48,7 +48,7 @@
                     <img src="{{ post.image }}" alt="">
                  {% endif %}
              <div class="caption">
-                <h1><a href="{% url "blog.views.post_edit" pk=post.pk %}">{{ post.title }}</a></h1>
+                <h1><a href="{% url "blog.views.post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
                 <p>{{ post.summary|truncatewords:25 }}</p>
                 <a href="{{post.link}}" class="originallink">{{ post.source }}</a>
                 <br>

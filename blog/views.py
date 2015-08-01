@@ -43,11 +43,16 @@ def post_delete(request, pk):
             post.delete()
         return redirect('/', pk=post.pk)
     else:
-        raise Http404
+        raise Http404()
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    me = User.objects.get(username='weisdata')
     if post.author == request.user:
+        return render(request, 'blog/post_detail.html', {'post': post})
+    elif post.author == me:
+        public_posts = Post.objects.filter(author=me).order_by('-published_date')
+        post = get_object_or_404(public_posts, pk=pk)
         return render(request, 'blog/post_detail.html', {'post': post})
     else:
         raise Http404()
@@ -97,7 +102,7 @@ def post_edit(request, pk):
             form = PostForm(instance=post)
         return render(request, 'blog/post_edit.html', {'form': form})
     else:
-        raise Http404
+        raise Http404()
 
 def register(request):
     registered = False
