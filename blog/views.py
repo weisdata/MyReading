@@ -125,7 +125,6 @@ def register(request):
 
 
 def user_login(request):
-
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -137,12 +136,10 @@ def user_login(request):
             else:
                 return HttpResponse("Your MyReading account is disabled.")
         else:
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Your username and password do not match. Try Again!")
-
+            return HttpResponse("Your username and password didn't match. Try Aagin!")
     else:
         return render(request, 'blog/login.html', {})
-
+        
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
@@ -151,10 +148,6 @@ def restricted(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
-
-
-#def custom_404(request):
-#    return render_to_response('404.html')
 
 
 def handler404(request):
